@@ -47,8 +47,10 @@ return Application::configure(basePath: dirname(__DIR__))
             // 'subscribed' => \Spark\Http\Middleware\VerifyBillableIsSubscribed::class,
             // 'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class, // or \Illuminate\Routing\Middleware\ThrottleRequestsWithRedis::class,
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+            'role' => \Spatie\Permission\Middleware\RoleMiddleware::class,
+            'permission' => \Spatie\Permission\Middleware\PermissionMiddleware::class,
+            'role_or_permission' => \Spatie\Permission\Middleware\RoleOrPermissionMiddleware::class,
         ]);
-        SubstituteBindings::class;
 
     })
     ->withExceptions(function (Exceptions $exceptions) {
