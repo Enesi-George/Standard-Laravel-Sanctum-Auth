@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Middleware\TeamsPermission;
 use Illuminate\Foundation\Application;
+use App\Http\Middleware\TeamsPermission;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
 use Illuminate\Routing\Middleware\ThrottleRequests;
 use Illuminate\Routing\Middleware\SubstituteBindings;
+use Spatie\Permission\Exceptions\CustomUnauthorizedException;
 use Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful;
 
 
@@ -32,6 +33,7 @@ return Application::configure(basePath: dirname(__DIR__))
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             \Illuminate\Contracts\Auth\Middleware\AuthenticatesRequests::class,
             \Illuminate\Auth\Middleware\Authorize::class,
+            CustomUnauthorizedException::class
         ]);
         
         $middleware->alias([
