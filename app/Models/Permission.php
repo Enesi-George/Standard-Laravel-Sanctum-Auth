@@ -9,5 +9,8 @@ class Permission extends SpatiePermission
 {
     use HasFactory;
     use HasUuids;
-    protected $primaryKey = 'uuid';
+    protected $primaryKey = 'id';
+    public $incrementing = false;
+
+    protected $keyType = 'string';
 }

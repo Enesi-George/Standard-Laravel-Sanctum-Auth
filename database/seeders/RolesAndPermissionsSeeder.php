@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Role;
+use App\Models\Team;
 use App\Models\Permission;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -16,6 +17,14 @@ class RolesAndPermissionsSeeder extends Seeder
     {
         // Reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
+
+        //Create Team
+        //Create Team
+        $teams = [
+            Team::create(['name' => 'Alpha', 'description' => 'we are the alpha team with ultimate authority']),
+            Team::create(['name' => 'Beta', 'description' => 'we are the beta team with less authority']),
+            Team::create(['name' => 'Gamma', 'description' => 'we are the gamma team with lesser authority']),
+        ];
 
         // Create permissions
         Permission::create(['name' => 'create super admin', 'guard_name' => 'api']);
@@ -39,5 +48,12 @@ class RolesAndPermissionsSeeder extends Seeder
             'edit users detail',
             'create super admin',
         ]);
+
+        // Assign team IDs randomly to roles
+        foreach ([$super_admin_role, $admin_role] as $role) {
+            $randomTeam = $teams[array_rand($teams)];
+            $role->team_id = $randomTeam->id;
+            $role->save();
+        }
     }
 }

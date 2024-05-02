@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
@@ -9,5 +10,15 @@ class Role extends SpatieRole
 {
     use HasFactory;
     use HasUuids;
-    protected $primaryKey = 'uuid';
+
+    protected $primaryKey = 'id';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
+    public function team()
+    {
+        return $this->belongsTo(Team::class); //changed to Many depending on the business logic
+    }
 }
