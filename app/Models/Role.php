@@ -17,7 +17,7 @@ class Role extends SpatieRole
 
     protected $keyType = 'string';
 
-    public function team()
+    public function teams()
     {
         return $this->belongsTo(Team::class); //changed to Many depending on the business logic
     }

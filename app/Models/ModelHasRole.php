@@ -24,7 +24,7 @@ class ModelHasRole extends Model
         'team_id',
     ];
 
-    public function team(){
+    public function teams(){
         return $this->hasMany(Team::class);
     }
 
