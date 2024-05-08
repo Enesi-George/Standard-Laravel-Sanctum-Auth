@@ -8,15 +8,12 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Spatie\Permission\Traits\HasRoles;
+use Laravel\Sanctum\HasApiTokens;
+
 
 class User extends Authenticatable
 {
-    use HasFactory, Notifiable, HasUuids, HasRoles;
-
-    protected function getDefaultGuardName(): string
-    {
-        return 'api';
-    }
+    use HasFactory, HasApiTokens, Notifiable, HasUuids, HasRoles;
 
     protected $primaryKey = 'id';
 
@@ -32,6 +29,7 @@ class User extends Authenticatable
         'email',
         'phone_number',
         'otp_token',
+        'password',
         'email_verified_at',
     ];
 
