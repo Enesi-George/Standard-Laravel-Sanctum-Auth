@@ -182,12 +182,5 @@ return [
 
         'store' => 'default',
 
-                /*
-        * The name of the default guard of the application.
-        *
-        * If null is provided, the `default_guard` config of the `auth` config file
-        * will be used.
-        */
-        'default_guard_name' => 'api',
     ],
 ];

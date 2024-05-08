@@ -13,5 +13,10 @@ class Team extends Model
 
     protected $primaryKey = 'id';
 
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
     public $incrementing = false;
 }
