@@ -13,7 +13,7 @@ return [
     |
     */
     'defaults' => [
-        'guard' => 'api',
+        'guard' => 'sanctum',
         'passwords' => 'users',
     ],
 

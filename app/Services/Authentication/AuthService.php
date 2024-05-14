@@ -9,15 +9,16 @@ use App\Mail\VerifyEmail;
 use Illuminate\Support\Str;
 use App\Services\OtpService;
 use App\Traits\ApiResponses;
+use Illuminate\Http\Request;
+use App\Mail\PasswordResetLink;
+use App\Jobs\SendEmailVerification;
+use App\Jobs\SendPasswordResetLink;
 use Illuminate\Support\Facades\Log;
 use App\Http\Resources\AuthResource;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Resources\RegistrationResource;
-use App\Jobs\SendEmailVerification;
-use App\Jobs\SendPasswordResetLink;
-use App\Mail\PasswordResetLink;
 use Illuminate\Validation\ValidationException;
 
 final class AuthService
@@ -32,7 +33,7 @@ final class AuthService
         $this->otpService = $otpService;
     }
 
-    public function register($validatedData)
+    public function register($request)
     {
         try {
             //generate token
@@ -40,13 +41,13 @@ final class AuthService
 
             //create user
             $user = User::create([
-                'username' => $validatedData['username'],
-                'first_name' => $validatedData['first_name'],
-                'last_name' => $validatedData['last_name'],
-                'email' => $validatedData['email'],
-                'phone_number' => $validatedData['phone_number'],
+                'username' => $request->username,
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'email' => $request->email,
+                'phone_number' => $request->phone_number,
                 'otp_token' => $otpToken,
-                'password' => $validatedData['password'],
+                'password' => $request->password,
 
             ]);
 

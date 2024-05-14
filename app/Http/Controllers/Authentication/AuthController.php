@@ -25,9 +25,7 @@ final class AuthController extends Controller
 
     public function registerHandler(RegistrationRequest $request)
     {
-        //validated request
-        $validatedData = $request->validated();
-        $result = $this->authService->register($validatedData);
+        $result = $this->authService->register($request->toDTO());
         return $result;
     }
 

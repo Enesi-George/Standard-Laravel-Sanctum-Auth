@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\DataTransferObject\StoreUserDTO;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
@@ -49,5 +50,18 @@ class RegistrationRequest extends FormRequest
             "last_name.regex" => "The :attribute must start with an uppercase letter followed by lowercase letters.",
             'password.regex' => 'The password must contain at least one lowercase letter, one uppercase letter, one digit, one special character and min of 8 characters',
         ];
+    }
+
+    public function toDTO(): StoreUserDTO
+    {
+        return new StoreUserDTO(
+            username: $this->username,
+            first_name: $this->first_name,
+            last_name: $this->last_name,
+            email: $this->email,
+            phone_number: $this->phone_number,
+            password: $this->password,
+
+        );
     }
 }

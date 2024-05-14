@@ -16,6 +16,7 @@ class User extends Authenticatable
     use HasFactory, HasApiTokens, Notifiable, HasUuids, HasRoles;
 
     protected $primaryKey = 'id';
+    protected function getDefaultGuardName(): string { return 'sanctum'; }
 
     /**
      * The attributes that are mass assignable.

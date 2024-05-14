@@ -1,0 +1,1 @@
+for email to work, you might need to run php artisan queue:work

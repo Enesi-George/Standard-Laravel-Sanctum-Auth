@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     {
         $faker = Faker::create();
 
-        for ($i = 0; $i < 10; $i++) { // Adjust the loop count as needed
+        for ($i = 0; $i < 4; $i++) { // Adjust the loop count as needed
             DB::table('users')->insert([
                 'id' => $faker->uuid,
                 'username' => $faker->userName,
